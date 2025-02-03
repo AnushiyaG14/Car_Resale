@@ -1,0 +1,114 @@
+import time
+
+import streamlit as st
+import sklearn
+import pickle
+import numpy as np
+from numpy import dtype
+from altair.theme import options
+
+
+model = pickle.load(open('/Users/arun/Downloads/Arun.pkl','rb'))
+
+def pred(AREA,INT_SQFT,DIST_MAINROAD,N_BEDROOM,N_BATHROOM,N_ROOM,SALE_COND,PARK_FACIL,
+       BUILDTYPE,UTILITY_AVAIL,STREET,MZZONE,QS_ROOMS,QS_BATHROOM,QS_BEDROOM,QS_OVERALL,REG_FEE,COMMIS,
+       SALES_PRICE,year_date_sale,month_date_sale,day_date_sale,week_date_sale,build_age)
+	   
+	   result=model4.predict(ip)
+	   return result
+	   
+def main():
+    st.title("Sales Prediction ML️ 🏥")
+
+	 AREA = st.selectbox("AREA",options=["Male","Female","Other"])
+	 AREA_map={'Adyar' : 0, 'Anna Nagar' : 1, 'Chrompet' : 2 'KK nagar': 3, 'Karapakkam': 4, 'T nagar': 5, 'Velachery': 6} 
+     AREA_value = AREA_map[AREA]
+	 
+	 INT_SQFT = st.text_input("INT_SQFT")
+	 
+	 DIST_MAINROAD = st.text_input("DIST_MAINROAD")
+	 
+	 N_BEDROOM = st.selectbox("N_BEDROOM", options = ['1','2','3','4'])
+	 
+	 N_BATHROOM = st.selectbox("N_BATHROOM", options = ['1','2'])
+	 
+	 N_ROOM = st.selectbox("",options= ['2','3','4','5','6'])
+	 
+	 SALES_PRICE = st.text_input("SALES_PRICE")
+	 	 
+	 PARK_FACIL = st.selectbox("PARK_FACIL",options = ['Yes', 'No'])
+
+    BUILDTYPE = st.selectbox("BUILDTYPE",options=['Commercial','House','Others'])
+	BUILDTYPE_map= {'Commercial' : 0,'House':1,'Others':2}
+	BUILDTYPE_value= BUILDTYPE_map[BUILDTYPE]
+	
+	UTILITY_AVAIL = st.selectbox("UTILITY_AVAIL",options = ['All pub','ELO','No sewage'])
+	UTILITY_AVAIL_map={'All pub':0,'ELO':1,'No sewage':2}
+	UTILITY_AVAIL_value=UTILITY_AVAIL_map[UTILITY_AVAIL]
+	
+	STREET = st.selectbox("STREET", options= ['Gravel','No Access','Paved'])
+	STREET_map={'Gravel':0,'No Access':1,'Paved':2}
+	STREET_value=STREET_map[STREET]
+	
+	MZZONE=st.selectbox("MZZONE", options=['A','C','I','RH','RL','RM'])
+	MZZONE_map={'A':0,'C':1,'I':2,'RH':3,'RL':4,'RM':5}
+	MZZONE_value=MZZONE_map[MZZONE]
+	
+	QS_ROOMS=st.text_input("QS_ROOMS")
+	
+	QS_BATHROOM = st.text_input("QS_BATHROOM")
+	
+	QS_BEDROOM = st.text_input("QS_BEDROOM")
+	
+	QS_OVERALL = st.text_input("QS_OVERALL")
+	
+	REG_FEE = st.text_input("REG_FEE")
+	
+	COMMIS = st.text_input("COMMIS")
+	
+	year_date_sale = st.selectbox("year_date_sale", options = ['2011','2006','2012', '2010', '2009', '2014', '2007', '2008', '2013', '2005', '2015',
+       '2004'])
+	year_date_sale_value=year_date_sale
+	
+	month_date_sale = st.selectbox("month_date_sale", options = ['1','2','3','4','5','6','7','8','9','10','11','12'])
+	month_date_sale_value=month_date_sale
+	
+	day_date_sale= st.selectbox("day_date_sale",options = ['4', '19', '13',  '5', '11','6','22','16','1','12','25','2','23','10','18','15','26',
+       '28','9','7','24','21','3','8','20','30','14','31','17','27','29'])
+	day_date_sale_value=day_date_sale
+	
+	week_date_sale=st.selectbox("week_date_sale", options = ['2', '1', '5', '0', '3','6','4'])
+	week_date_sale_map={'2':, '1':, '5':, '0':, '3':,'6':,'4':}
+	week_date_sale_value=week_date_sale
+	
+	
+    result_placeholder = st.empty()
+    result_placeholder1 = st.empty()
+    gif_holder = st.empty()
+
+    if st.button("Predict"):
+        try:
+            gif = "/Users/arun/Downloads/Vasool_Raja_MBBS_4.gif"
+            gif_holder.image(gif,caption = 'Processing', use_container_width=True)
+            time.sleep(5)
+            gif_holder.empty()
+
+            op = db_pred(gender_value,age, hypertension_value, heart_disease_value,
+                         smoking_history_values, bmi, HbA1c_level, blood_glucose_level)
+
+            if op == 1:
+                result_placeholder.markdown("""<div style ="text-align: center;font-size: 60 px; color: red;">
+                                You are diabetic 😢
+                                </div>""", unsafe_allow_html=True)
+                result_placeholder1.audio("/Users/arun/Downloads/Avlothan Nammala Mudichu Vittinga Ponga Dialogue-[AudioTrimmer.com].mp3",autoplay=True)
+            else:
+                result_placeholder.markdown("""<div style ="text-align: center;font-size: 60 px; color: green;">
+                You are not diabetic 🎉
+                </div>""", unsafe_allow_html=True)
+                st.balloons()
+        except ValueError as e:
+            st.error(f"Error: {e}")
+
+if __name__ == "__main__":
+    main()
+

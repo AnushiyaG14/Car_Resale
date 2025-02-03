@@ -1,0 +1,27 @@
+pip install statsmodels
+
+from statsmodels.stats import weightstats as ztest
+
+#1 sample Z test deals with large data 
+x=np.random.normal(loc=90,scale=10,size=5000) #mean,standard deviation
+
+
+for i in range(0,100):
+  sample1=np.random.choice(x,500)
+  z_test,p_value=ztest.ztest(sample1,value=90)
+  print(z_test,p_value)
+  if p_value < 0.055:
+    print("H0 null hypothesis Reject,Ha alternate hypothesis accepts,data is not normally distributed")
+  else:
+    print("H0 null hypothesis accepts,Ha alternate hypothesis rejects,data is normally distributed")
+
+#2 sample ztest
+y=np.random.normal(loc=95,scale=5,size=5000)
+for i in range(0,100):
+  sample2=np.random.choice(y,500)
+  z_test,p_value=ztest.ztest(sample1,sample2,alternative="two-sided")
+  print(z_test,p_value)
+  if p_value < 0.055:
+    print("H0 null hypothesis Reject,Ha alternate hypothesis accepts,data is not normally distributed")
+  else:
+    print("H0 null hypothesis accepts,Ha alternate hypothesis rejects,data is normally distributed")

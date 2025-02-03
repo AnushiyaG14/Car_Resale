@@ -1,0 +1,14 @@
+import re
+
+# Define the regular expression pattern
+pattern = r'^[A-Z]'
+
+# Test strings
+strings = ["Hello", "world", "Python", "regular expressions"]
+
+# Check each string
+for s in strings:
+    if re.match(pattern, s):
+        print(f"'{s}' starts with a capital letter.")
+    else:
+        print(f"'{s}' does NOT start with a capital letter.")

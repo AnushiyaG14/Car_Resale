@@ -1,0 +1,16 @@
+model1.predict_proba(x_test):
+It predicts the probabilities for each class for all input samples in x_test.
+
+Example
+
+
+model1.predict_proba(x_test) = [
+    [0.7, 0.3],  # First row: Probabilities for sample 1
+    [0.2, 0.8],  # Second row: Probabilities for sample 2
+    [0.9, 0.1],  # Third row: Probabilities for sample 3
+]
+
+
+y_probs = [0.3, 0.8, 0.1, ...]
+
+These are the probabilities of the positive class (class 1) for each sample.

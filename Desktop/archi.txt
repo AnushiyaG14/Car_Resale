@@ -1,0 +1,12 @@
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.models import Sequential
+
+import tensorflow as tf
+model=Sequential()
+model.add(Dense(256,input_dim=x_train.shape[1],activation="relu"))
+model.add(Dense(128,activation="relu"))
+model.add(Dense(64,activation="relu"))
+model.add(Dense(32,activation="relu"))
+model.add(Dense(16,activation="relu"))
+model.add(Dense(2,activation="softmax"))
+model.compile(loss="categorical_crossentropy",optimizer="adam",metrics=["accuracy",tf.keras.metrics.F1Score(),tf.keras.metrics.Recall(),tf.keras.metrics.Precision()])
