@@ -21,7 +21,7 @@ def set_image_local(image_path):
         unsafe_allow_html=True
     )
 
-set_image_local(r"D:\streamlit\env1\DL\pic2.jpg")
+set_image_local(r"car.jpeg")
 # Load the trained model
 with open('model.pkl', 'rb') as file:
     model = pickle.load(file)
