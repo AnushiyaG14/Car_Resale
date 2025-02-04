@@ -128,7 +128,7 @@ st.title("Car Resale Prediction & Chatbot 🚗")
 # Sidebar Navigation
 option = st.sidebar.selectbox("Choose a Feature", ["Predict Car Resale Value", "Chatbot"])
 if option == "Predict Car Resale Value":
-    with open('D:\streamlit\env\prj3\model.pkl', 'rb') as file:
+    with open('model.pkl', 'rb') as file:
         model = pickle.load(file)
 
     st.markdown(
