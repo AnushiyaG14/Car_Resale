@@ -36,92 +36,6 @@ def get_car_details_by_brand(brand_name, df):
         return [{"message": f"No cars found for brand: {brand_name}"}]
     return filtered_cars.head(5)[['oem', 'model', 'price', 'Fuel Type', 'Transmission', 'Mileage']].to_dict('records')
 
-# Chatbot UI
-chatbot_html = """
-<style>
-.chatbot-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    background: white;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    border-radius: 10px;
-    display: none;
-    flex-direction: column;
-    z-index: 9999;
-}
-
-.chatbot-header {
-    background: #0078ff;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    cursor: pointer;
-}
-
-.chatbot-body {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-}
-
-.chatbot-input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-top: 1px solid #ddd;
-    outline: none;
-}
-
-.chatbot-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #0078ff;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-}
-</style>
-
-<div class="chatbot-toggle" onclick="toggleChatbot()">💬</div>
-
-<div class="chatbot-container" id="chatbot">
-    <div class="chatbot-header" onclick="toggleChatbot()">Car Chatbot 🚗</div>
-    <div class="chatbot-body" id="chatbot-body"></div>
-    <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Ask me about cars..." onkeypress="sendMessage(event)">
-</div>
-
-<script>
-function toggleChatbot() {
-    var chatbot = document.getElementById("chatbot");
-    chatbot.style.display = (chatbot.style.display === "none" || chatbot.style.display === "") ? "flex" : "none";
-}
-
-function sendMessage(event) {
-    if (event.key === "Enter") {
-        var input = document.getElementById("chatbot-input").value;
-        document.getElementById("chatbot-body").innerHTML += "<div><b>You:</b> " + input + "</div>";
-        document.getElementById("chatbot-input").value = "";
-
-        // Send input to Streamlit
-        var iframe = document.createElement("iframe");
-        iframe.src = "/?query=" + encodeURIComponent(input);
-        iframe.style.display = "none";
-        document.body.appendChild(iframe);
-    }
-}
-</script>
-"""
-
 # Display Streamlit page
 st.title("Car Resale Prediction & Chatbot 🚗")
 
@@ -218,5 +132,4 @@ elif option == "Chatbot":
 
     #except Exception as e:
      #   st.error(f"Error: {e}")
-# Add chatbot to the bottom right
-st.markdown(chatbot_html, unsafe_allow_html=True)
+
