@@ -1,8 +1,8 @@
 import streamlit as st
 import pickle
 import numpy as np
-
 import base64
+
 def set_image_local(image_path):
     with open(image_path, "rb") as file:
         img = file.read()
@@ -22,18 +22,18 @@ def set_image_local(image_path):
         unsafe_allow_html=True
     )
 
-set_image_local(r"D:\streamlit\env\prj3\img2.jpg")
+set_image_local(r"img2.jpg")
 
 # Load the trained model
-with open('D:\streamlit\env\prj3\model.pkl', 'rb') as file:
+with open('model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Streamlit app
-st.title("Car Resale Value Predictor")
+st.title("Car Resale Price Predictor")
 
 st.markdown(
     """
-    ## Welcome to the Car Resale Value Predictor! 🚗💰  
+    ## Welcome to the Car Resale Price Predictor! 🚗💰  
     Curious about how much your car is worth in the resale market?  
     Enter your car details, and our AI-powered model will predict its estimated resale value.  
     This tool helps car buyers and sellers make informed decisions effortlessly.  
@@ -57,18 +57,19 @@ with col1:
     oem = st.text_input("OEM (Manufacturer)", placeholder="Enter manufacturer name")
     model_name = st.text_input("Model", placeholder="Enter car model")
     model_year = st.number_input("Year of Manufacture", min_value=2000, max_value=2025, step=1)
-    kms_driven = st.number_input("Kilometers Driven", min_value=0, step=500, value=10000)
+   
 with col2:
+    kms_driven = st.number_input("Kilometers Driven", min_value=0, step=500, value=10000)
     fuel_type = st.selectbox("Fuel Type", options=fuel_type_map.keys())
     ownership = st.selectbox("Ownership Type", options=ownership_map.keys())
     transmission = st.selectbox("Transmission Type", options=transmission_map.keys())
-    max_power = st.number_input("Max Power (in BHP)", min_value=50, step=1)
 with col3:
+    max_power = st.number_input("Max Power (in BHP)", min_value=50, step=1)
     engine_type = st.text_input("Engine Type", placeholder="Enter engine type")
     mileage = st.number_input("Mileage (in km/l)", min_value=0.0, step=0.1)
     seating_capacity = st.number_input("Seating Capacity", min_value=2, max_value=10, step=1)
-    engine_displacement = st.number_input("Engine Displacement (in cc)", min_value=500, step=50)
 with col4:
+    engine_displacement = st.number_input("Engine Displacement (in cc)", min_value=500, step=50)
     body_type = st.text_input("Body Type", placeholder="Enter body type (e.g., Sedan, SUV)")
     acceleration = st.number_input("Acceleration (0-100 km/h in seconds)", min_value=1.0, step=0.1)
 
