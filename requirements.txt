@@ -4,5 +4,4 @@ numpy
 scikit-learn
 tensorflow
 wandb
-base64
 Dockerfile
